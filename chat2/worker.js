@@ -41,6 +41,12 @@ module.exports.run = function (worker) {
       scServer.global.publish('yell', message);
     });    
 
+    var interval = setInterval(function () {
+      socket.emit('rand', {
+        rand: Math.floor(Math.random() * 5)
+      });
+    }, 1000);
+    
     socket.on('disconnect', function () {
       console.log("user disconnected")
       clearInterval(interval);
