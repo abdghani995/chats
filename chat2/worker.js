@@ -38,7 +38,7 @@ module.exports.run = function (worker) {
     });
 
     sub.on("message", function(channel, message) {
-      scServer.global.publish('yell', message);
+      socket.emit('yell', message);
     });    
 
     

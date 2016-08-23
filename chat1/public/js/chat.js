@@ -1,5 +1,5 @@
- 	  var socket = socketCluster.connect();
- 	  var chatChannel = socket.subscribe('yell');
+    var socket = socketCluster.connect();
+    
 
       socket.on('error', function (err) {
         throw 'Socket error - ' + err; 
@@ -9,9 +9,9 @@
         console.log('Connected to server');
       });
       
-      chatChannel.watch(function (data) {  
-    		$('#messages-list').append($('<li>').text(data));
-  	  });
+      socket.on('yell',function(data){ 
+        $('#messages-list').append($('<li>').text(data));
+      });
 
       $('form').submit(function(){
         if($('#message').val() != '') {
@@ -20,5 +20,5 @@
 
       $('#message').val('')
         return false;
-		});
+    });
 
